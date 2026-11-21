@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f6e5e9">
+<title>Un lugar para ti ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap');
+:root{--wine:#784b5b;--rose:#bd7e91;--dust:#d9aab6;--paper:#fffaf5;--ink:#624d53;--muted:#9a7c83;--line:#ecd9d8;--gold:#c6a16b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:'DM Sans',sans-serif;background:#f6e9e9;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 12% 10%,#fff8f2 0,transparent 35%),radial-gradient(ellipse at 90% 80%,#ead3dc 0,transparent 36%),linear-gradient(135deg,#f7e9e8,#f4e8df 48%,#f0dfe7)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:8;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E")}
+#petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.petal{position:absolute;top:-40px;color:#c98d9f;opacity:0;animation:fall linear infinite;filter:drop-shadow(0 2px 3px #9a617022)}
+@keyframes fall{0%{transform:translate3d(0,-5vh,0) rotate(0);opacity:0}10%{opacity:.45}90%{opacity:.4}100%{transform:translate3d(var(--drift),110vh,0) rotate(400deg);opacity:0}}
+.wrap{width:min(1040px,92%);margin:auto;position:relative;z-index:2}
+.hero{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 0 45px;position:relative}
+.topline{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#a87b86;animation:fadeUp 1s both}
+.hero h1{font:clamp(58px,10vw,112px)/.95 'Great Vibes',cursive;color:var(--wine);font-weight:400;margin:25px 0 18px;text-shadow:0 7px 24px #9e6b781c;animation:fadeUp 1s .15s both}
+.hero .intro{font:clamp(18px,2.6vw,23px)/1.7 'Cormorant Garamond',serif;max-width:600px;color:#856b72;animation:fadeUp 1s .3s both}
+.ornament{display:flex;align-items:center;gap:14px;color:var(--dust);font-size:18px;margin:20px 0;animation:fadeUp 1s .4s both}
+.ornament:before,.ornament:after{content:"";width:65px;height:1px;background:linear-gradient(90deg,transparent,var(--dust))}
+.ornament:after{transform:rotate(180deg)}
+.seal{width:72px;height:72px;border:1px solid #d8a9b5;border-radius:50%;display:grid;place-items:center;color:#b9788d;font-size:28px;margin:10px auto 25px;box-shadow:0 0 0 7px #fff5f2a0,0 0 0 8px #dfbdc5;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.06);box-shadow:0 0 0 11px #fff5f260,0 0 0 12px #dfbdc5}}
+.primary{border:0;border-radius:40px;padding:15px 28px;background:linear-gradient(120deg,#a9677e,#c58b9b);color:white;font:500 12px 'DM Sans';letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;box-shadow:0 12px 25px #a56d7e35;transition:.35s;animation:fadeUp 1s .55s both}
+.primary:hover{transform:translateY(-4px);box-shadow:0 17px 30px #a56d7e48;letter-spacing:2px}
+.scrollhint{position:absolute;bottom:25px;color:#b28d97;font-size:10px;letter-spacing:3px;text-transform:uppercase;animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(7px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.section{padding:80px 0 90px}
+.section-head{text-align:center;margin-bottom:38px}
+.kicker{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#b17f8c}
+.section h2{font:clamp(38px,6vw,57px) 'Cormorant Garamond',serif;font-weight:400;color:var(--wine);margin:10px 0}
+.section-head p{font:19px/1.6 'Cormorant Garamond',serif;color:#987b82;margin:0 auto;max-width:570px}
+.divider{height:1px;width:100%;background:linear-gradient(90deg,transparent,#d9b8bf,transparent)}
+.letter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.tile{position:relative;min-height:180px;text-align:left;border:1px solid #ead4d7;background:linear-gradient(145deg,#fffdf9eF,#fff7f5e8);border-radius:5px;padding:25px 22px;cursor:pointer;overflow:hidden;box-shadow:0 10px 28px #8058660c;transition:transform .4s,box-shadow .4s,border-color .4s}
+.tile:before{content:"";position:absolute;inset:8px;border:1px solid #f0e2df;pointer-events:none;transition:inset .4s}
+.tile:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;background:#f3dfe4;right:-45px;bottom:-55px;opacity:.55;transition:transform .5s}
+.tile:hover{transform:translateY(-8px) rotate(-.5deg);box-shadow:0 18px 35px #80586620;border-color:#d5aab5}
+.tile:hover:before{inset:13px}
+.tile:hover:after{transform:scale(1.5)}
+.tile .symbol{font-size:25px;display:block;margin-bottom:13px;position:relative;z-index:1}
+.tile strong{font:23px 'Cormorant Garamond',serif;font-weight:500;color:var(--wine);display:block;position:relative;z-index:1}
+.tile small{font-size:11px;color:#a3868c;display:block;margin-top:8px;position:relative;z-index:1;letter-spacing:.2px}
+.tile .number{position:absolute;right:20px;top:18px;font:13px 'Cormorant Garamond';color:#c5a2aa}
+.more-note{text-align:center;color:#a1848c;font:italic 17px 'Cormorant Garamond';margin:30px 0 0}
+#reader{display:none;position:fixed;inset:0;z-index:20;background:#4c303b80;backdrop-filter:blur(9px);align-items:center;justify-content:center;padding:20px;opacity:0;transition:opacity .45s}
+#reader.open{display:flex}
+#reader.show{opacity:1}
+.reader-shell{width:min(680px,100%);max-height:90vh;overflow:auto;position:relative;transform:translateY(35px) scale(.96);transition:transform .65s cubic-bezier(.2,.8,.2,1)}
+#reader.show .reader-shell{transform:translateY(0) scale(1)}
+.close{position:sticky;top:10px;float:right;margin:10px 10px -48px 0;z-index:5;border:1px solid #ead5d7;background:#fffaf6;color:#9d6d7b;width:37px;height:37px;border-radius:50%;font-size:20px;cursor:pointer;transition:.25s}
+.close:hover{transform:rotate(90deg);background:#f5e5e8}
+.letter{position:relative;background:var(--paper);padding:clamp(35px,7vw,65px);border:1px solid #e9d9d0;box-shadow:0 25px 80px #28151d35;min-height:420px}
+.letter:before{content:"";position:absolute;inset:13px;border:1px solid #eddfd8;pointer-events:none}
+.letter:after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:90px;height:3px;background:#d9aab6}
+.letter-top{text-align:center;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#b38a91;margin-bottom:25px}
+.letter-icon{text-align:center;font-size:34px;margin-bottom:12px;animation:pop .6s both}
+@keyframes pop{0%{transform:scale(.4) rotate(-20deg);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+.letter h3{text-align:center;font:clamp(34px,6vw,48px) 'Cormorant Garamond',serif;font-weight:400;color:var(--wine);margin:0 0 22px}
+.letter-copy{font:20px/1.85 'Cormorant Garamond',serif;color:#6c565d;white-space:pre-line;min-height:150px}
+.letter-sign{font:italic 25px 'Great Vibes',cursive;color:#b4778b;text-align:right;margin-top:27px}
+.letter-foot{text-align:center;color:#c28e9e;font-size:16px;margin-top:24px}
+.reader-controls{display:flex;justify-content:center;gap:12px;margin:17px 0 0;flex-wrap:wrap}
+.secondary{border:1px solid #e6cbd2;background:#fffaf6eF;color:#865a69;border-radius:30px;padding:11px 18px;font:11px 'DM Sans';letter-spacing:.6px;cursor:pointer;transition:.25s}
+.secondary:hover{background:#f7e7eb;transform:translateY(-2px)}
+.note-box{max-width:690px;margin:70px auto 0;text-align:center;padding:35px 30px;border-top:1px solid #d9b9c1;border-bottom:1px solid #d9b9c1}
+.note-box .bigheart{font-size:27px;color:#bf8093}
+.note-box p{font:23px/1.7 'Cormorant Garamond',serif;color:#856b73;margin:12px 0}
+footer{text-align:center;padding:35px 0 55px;color:#a88991;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+#toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);opacity:0;z-index:50;background:#76505e;color:#fff8f4;border-radius:30px;padding:12px 20px;font-size:12px;transition:.3s;pointer-events:none}
+#toast.visible{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.letter-grid{grid-template-columns:repeat(2,1fr)}.hero{min-height:88vh}}
+@media(max-width:480px){.letter-grid{grid-template-columns:1fr 1fr;gap:10px}.tile{min-height:160px;padding:18px 14px}.tile strong{font-size:20px}.tile small{font-size:10px}.tile .number{right:14px;top:13px}.section{padding:60px 0}.letter-copy{font-size:18px}.letter{min-height:0}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="grain"></div><div id="petals"></div>
+<div class="wrap">
+  <header class="hero">
+    <div class="topline">Un pequeño universo hecho de palabras</div>
+    <h1>Un lugar para ti</h1>
+    <p class="intro">Para esos días en los que sobran las palabras, para los días en los que faltan… y para cada pequeño sentimiento que merece una cartita.</p>
+    <div class="ornament">✧ ♡ ✧</div>
+    <div class="seal">✉</div>
+    <button class="primary" id="start">Abrir este pequeño mundo</button>
+    <div class="scrollhint">desliza despacito　⌄</div>
+  </header>
+
+  <div class="divider"></div>
+  <section class="section" id="letters">
+    <div class="section-head">
+      <div class="kicker">He guardado unas palabras para ti</div>
+      <h2>¿Cómo está tu corazón hoy?</h2>
+      <p>Elige una cartita. No importa cuál sea tu ánimo, siempre habrá un rinconcito aquí para ti.</p>
+      <div class="ornament">❀　♡　❀</div>
+    </div>
+    <div class="letter-grid" id="grid"></div>
+    <p class="more-note">Y si no encuentras exactamente lo que sientes, elige la que más se acerque. ♡</p>
+    <div class="note-box">
+      <div class="bigheart">♡</div>
+      <p>No tienes que estar feliz todo el tiempo para merecer cariño. Puedes venir aquí tal como eres, en cualquiera de tus días.</p>
+      <div class="bigheart">✧</div>
+    </div>
+  </section>
+  <footer>Hecho con cariño · una cartita a la vez · ♡</footer>
+</div>
+
+<div id="reader" role="dialog" aria-modal="true" aria-labelledby="letterTitle">
+  <div class="reader-shell">
+    <button class="close" id="close" aria-label="Cerrar">×</button>
+    <article class="letter">
+      <div class="letter-top">Una carta solamente para ti</div>
+      <div class="letter-icon" id="letterIcon">♡</div>
+      <h3 id="letterTitle"></h3>
+      <div class="letter-copy" id="letterCopy"></div>
+      <div class="letter-sign">Con todo mi cariño, para ti ♡</div>
+      <div class="letter-foot">✧　❀　✧</div>
+    </article>
+    <div class="reader-controls">
+      <button class="secondary" id="prev">← Carta anterior</button>
+      <button class="secondary" id="random">Sorpréndeme ✨</button>
+      <button class="secondary" id="next">Otra cartita →</button>
+    </div>
+  </div>
+</div>
+<div id="toast">Una cartita más para ti ♡</div>
+
+<script>
+const letters=[
+{icon:"☀️",title:"Si estás feliz",sub:"Para celebrar contigo",text:"Mi amor, si hoy estás feliz, quiero que disfrutes cada segundo de esa alegría. Ojalá pudieras guardar este momento en un frasquito para abrirlo cada vez que tengas un día complicado. Me encanta saber que tienes motivos para sonreír y deseo que la vida te regale muchísimos más.\n\nNunca minimices tus momentos bonitos. Ríete fuerte, celebra tus logros, haz todas esas cositas que te hacen sentir viva y recuerda que tu felicidad también es algo precioso que merece ser cuidado. Si pudiera pedir algo, sería que nunca te falten razones para sonreír así.\n\nDisfruta mucho tu día, preciosa. ♡"},
+{icon:"🌧️",title:"Si estás triste",sub:"Un poquito de cariño",text:"Hola, mi niña. Si llegaste a esta cartita porque hoy no te sientes muy bien, quiero recordarte algo: no tienes que fingir que estás feliz para que todo esté bien conmigo. Puedes tener días grises, puedes sentirte confundida y puedes necesitar un momento para ti.\n\nNo quiero que pienses que tienes que solucionar todo de inmediato. Ve despacito, respira, descansa y date el mismo cariño que tantas veces les das a los demás. Ojalá estas palabras puedan acompañarte aunque sea un poquito.\n\nTu tristeza no te hace menos maravillosa. Mereces paciencia, comprensión y muchísimo cariño, también en los días difíciles. ♡"},
+{icon:"🌶️",title:"Si estás enojada",sub:"Para cuando necesites calma",text:"Primero que todo, respira un poquito. No tienes que resolver nada en este preciso instante ni encontrar las palabras perfectas ahora mismo. Si algo te molestó, tus sentimientos importan y merecen ser escuchados.\n\nQuiero que sepas que prefiero mil veces que podamos hablar con calma, entender qué pasó y escucharnos de verdad, antes que decir cosas por impulso. No se trata de ganar una discusión, sino de cuidar lo que sentimos y aprender a comprendernos mejor.\n\nTómate tu tiempo, mi amor. Cuando estés lista, aquí hay espacio para hablar con tranquilidad. ♡"},
+{icon:"🍃",title:"Si estás indecisa",sub:"No tienes que saberlo todo",text:"A veces hay tantas opciones, tantos pensamientos y tantas posibilidades que hasta elegir algo pequeño parece complicado. Pero quiero recordarte que no tienes que tener todas las respuestas hoy.\n\nDate permiso de pensar, de cambiar de opinión y de descubrir qué es lo que realmente quieres. Equivocarse también forma parte de aprender, y ninguna decisión tiene que definir por completo quién eres.\n\nConfía un poquito más en ti. Puedes avanzar paso a paso, sin correr y sin exigirte tener el futuro entero organizado. ♡"},
+{icon:"🌙",title:"Si te sientes sola",sub:"Una compañía en palabras",text:"Quisiera que esta cartita te hiciera sentir acompañada, aunque sea por unos minutos. A veces podemos estar rodeados de personas y aun así sentir que nadie entiende exactamente lo que pasa por nuestra cabeza.\n\nPero quiero que recuerdes que tu presencia importa. Lo que piensas importa, lo que sientes importa y tú mereces tener personas con quienes puedas ser tú misma, sin tener que aparentar nada.\n\nNo tienes que llenar cada silencio. A veces basta con descansar, escuchar una canción bonita y recordar que eres alguien muy valiosa. Te mando todo mi cariño. ♡"},
+{icon:"☁️",title:"Si estás cansada",sub:"También mereces descansar",text:"Mi amor, por favor, no te exijas ser fuerte y productiva a cada momento. No tienes que hacer veinte cosas para demostrar que estás haciendo suficiente. Incluso los días en los que avanzas poquito cuentan.\n\nDescansar también es parte del camino. Puedes dejar algunas tareas para después, tomar agua, escuchar algo que te guste y regalarte un ratito sin tantas preocupaciones.\n\nEstoy orgulloso de cada esfuerzo que haces, incluso de esos que nadie más alcanza a notar. Cuídate mucho, ¿sí? Tú también mereces que te cuiden. ♡"},
+{icon:"🫧",title:"Si tienes mil pensamientos",sub:"Vamos de a poquito",text:"Sé que a veces la cabeza parece tener demasiadas pestañas abiertas al mismo tiempo. Quiero invitarte a hacer una pausa y recordar que no necesitas resolver todo de una sola vez.\n\nMira lo que tienes delante, piensa en una sola cosa y empieza por ahí. Lo demás puede esperar un poquito. No tienes que adelantarte a todos los escenarios posibles ni cargar con problemas que todavía no han llegado.\n\nEste momento es solo un momento, no toda tu historia. Ten paciencia contigo, preciosa. Un paso pequeño también es avanzar. ♡"},
+{icon:"⭐",title:"Si estás orgullosa de ti",sub:"¡Y tienes toda la razón!",text:"¡Mírate! Quiero que te des un momento para reconocer todo lo que has conseguido. A veces nos acostumbramos tanto a seguir adelante que olvidamos mirar hacia atrás y notar cuánto hemos avanzado.\n\nNo importa si para otras personas parece algo pequeño. Tú sabes el esfuerzo, la dedicación y las ganas que pusiste. Celebra tus logros sin sentir que tienes que restarles importancia.\n\nOjalá nunca dejes de reconocer lo capaz que eres. Sigue construyendo tus sueños a tu ritmo. Yo espero que siempre tengas motivos para sentirte orgullosa de ti. ♡"},
+{icon:"💌",title:"Si me estás extrañando",sub:"Un abrazo convertido en carta",text:"Si pudiera, doblaría esta cartita hasta convertirla en un avioncito y la mandaría directo hacia ti, solo para que te llegara un pedacito de todo el cariño que te tengo.\n\nPuede que no siempre podamos compartir el mismo lugar o el mismo momento, pero eso no hace que los recuerdos bonitos desaparezcan. Hay conversaciones, risas y pequeños detalles que guardo con muchísimo cariño.\n\nCuando me extrañes, vuelve a leer esto y recuerda que eres una personita muy especial para mí. Te mando un montón de cariño, mi Salmita. ♡"},
+{icon:"🪻",title:"Si dudas de ti",sub:"No olvides lo que vales",text:"Ojalá pudieras mirarte con la misma ternura con la que mereces ser mirada. No eres solamente tus errores, tus inseguridades o esos días en los que sientes que nada te sale bien.\n\nEres una persona que aprende, que cambia, que tiene sueños, ideas y una forma única de ver el mundo. No necesitas ser perfecta para ser importante, ni compararte con nadie para demostrar tu valor.\n\nTen paciencia contigo. Estás creciendo y todavía te esperan muchísimas cosas por descubrir. Nunca olvides que mereces creer en ti. ♡"},
+{icon:"🦋",title:"Si necesitas sonreír",sub:"Una pequeña misión",text:"Tengo una misión muy seria para ti: busca algo que te haga reír hoy. Puede ser un meme horrible, un video sin sentido, un recuerdo vergonzoso o una de esas tonterías que solo tú entiendes.\n\nY si nada funciona, imagina que estoy intentando escribir la carta más profunda y elegante del universo, pero mi cerebro decide escribir 'papita' de la nada. No sé por qué, pero ahora también me dio risa JAJAJA.\n\nListo, misión cumplida si al menos sonreíste un poquito. Te mando un besito en forma de palabras. ♡"},
+{icon:"🌌",title:"Antes de dormir",sub:"Para cerrar bonito el día",text:"Ya es momento de dejar que el día descanse también. No importa si hoy salió exactamente como querías o si hubo cosas que te habría gustado cambiar. Hiciste lo que pudiste con el día que tuviste, y eso merece un poquito de paz.\n\nDeja las preocupaciones por un momento, acomódate y piensa en algo bonito. Ojalá mañana llegue con nuevas oportunidades, momentos tranquilos y razones para sonreír.\n\nBuenas noches, mi niña. Que descanses muchísimo y que nunca te falte cariño. ♡"},
+{icon:"🌷",title:"Si necesitas sentirte querida",sub:"Porque mereces mucho cariño",text:"Quiero recordarte que no tienes que ganarte el cariño siendo perfecta, estando siempre de buen humor o haciendo todo bien. Mereces que te traten con ternura también cuando estás callada, cuando estás aprendiendo y cuando simplemente necesitas un descanso.\n\nHay muchas cosas bonitas en ti que van más allá de lo que haces por los demás. Tu manera de pensar, tus ocurrencias, tus gustos y esos pequeños detalles que te hacen ser tú.\n\nEspero que nunca tengas que dudar de que mereces respeto, tranquilidad y un cariño sincero. ♡"},
+{icon:"🎧",title:"Si escuchas una canción",sub:"Piensa en un recuerdo bonito",text:"Tal vez hoy suene una canción que te recuerde a alguien, a un lugar o a un momento que quisieras repetir. Me gusta pensar que la música tiene esa magia: puede guardar recuerdos sin necesidad de ocupar espacio.\n\nAsí que elige una canción que te haga sentir bien, súbele un poquito el volumen y deja que te acompañe. Ojalá encuentres una melodía que se convierta en uno de esos recuerdos a los que siempre quieras volver.\n\nY si alguna canción te recuerda a nosotros, espero que te saque una sonrisa. ♡"},
+{icon:"🌻",title:"Si tu día fue difícil",sub:"Mañana puede ser distinto",text:"No todos los días tienen que ser extraordinarios. Algunos simplemente cuestan, se sienten largos o no salen como los imaginábamos. Y está bien reconocerlo sin pensar que todo está mal.\n\nNo conviertas un día complicado en una conclusión sobre tu vida. Mañana tendrás otra oportunidad para intentarlo, cambiar de estrategia o simplemente empezar con más calma.\n\nPor ahora, reconoce que llegaste hasta aquí. Eso basta por hoy. Descansa y trátate bonito. ♡"},
+{icon:"💗",title:"Si quieres recordar lo nuestro",sub:"Un rinconcito de nuestros recuerdos",text:"A veces me pongo a pensar en todas esas pequeñas cosas que hemos compartido: las conversaciones, las risas, las ocurrencias y los momentos que quizá parecían normales, pero que terminaron siendo recuerdos muy especiales.\n\nMe gusta que nuestra historia esté hecha de detalles. No necesitamos que cada día sea una película; también hay algo precioso en acompañarnos en lo cotidiano, aprender y seguir creando momentos.\n\nGracias por formar parte de tantos recuerdos bonitos. Espero que todavía nos queden muchísimas páginas por escribir. ♡"},
+{icon:"🕊️",title:"Si necesitas un poquito de paz",sub:"Suelta los hombros y respira",text:"Por un instante, no tienes que demostrar nada ni cumplir ninguna expectativa. Puedes simplemente estar aquí. Respira despacio, relaja los hombros y deja que este pequeño momento sea solo tuyo.\n\nNo todo necesita una respuesta inmediata. Algunas cosas se entienden con tiempo, otras cambian y otras dejan de pesar tanto cuando aprendemos a mirarlas de otra manera.\n\nOjalá encuentres un poquito de tranquilidad hoy. Te la mereces, más de lo que imaginas. ♡"},
+{icon:"🎀",title:"Si tienes una buena noticia",sub:"¡Quiero celebrar contigo!",text:"¡A ver, a ver! Esta cartita es para cuando tengas algo bonito que contar. No importa si es una noticia enorme o un detalle pequeñito que te alegró la tarde: quiero que tengas un espacio para celebrar tus cosas.\n\nCuéntalo, disfrútalo y no te guardes la emoción por miedo a que parezca demasiado. Los momentos felices también merecen ser compartidos.\n\nOjalá vengan muchas más noticias bonitas para ti. ¡Te las mereces! ♡"},
+{icon:"✨",title:"Si necesitas motivación",sub:"Un pasito a la vez",text:"No tienes que llegar a la meta hoy. A veces lo más valiente es volver a intentarlo, aunque sea con un paso pequeño. No te compares con el ritmo de otras personas: cada quien tiene su propio camino y sus propios tiempos.\n\nRecuerda por qué empezaste, qué cosas sueñas y todo lo que ya has aprendido. Puedes ajustar tus planes, pedir ayuda y descansar cuando lo necesites.\n\nSigue adelante a tu manera. Estoy seguro de que todavía tienes muchas cosas bonitas por descubrir. ♡"}
+];
+const grid=document.getElementById('grid'),reader=document.getElementById('reader');
+let current=0;
+letters.forEach((l,i)=>{const b=document.createElement('button');b.className='tile';b.innerHTML=`<span class="number">${String(i+1).padStart(2,'0')}</span><span class="symbol">${l.icon}</span><strong>${l.title}</strong><small>${l.sub}</small>`;b.addEventListener('click',()=>openLetter(i));grid.appendChild(b)});
+function openLetter(i){
+ current=(i+letters.length)%letters.length;
+ const l=letters[current];
+ document.getElementById('letterIcon').textContent=l.icon;
+ document.getElementById('letterTitle').textContent=l.title;
+ document.getElementById('letterCopy').textContent=l.text;
+ reader.classList.add('open');requestAnimationFrame(()=>requestAnimationFrame(()=>reader.classList.add('show')));
+ document.body.style.overflow='hidden';
+}
+function closeLetter(){reader.classList.remove('show');setTimeout(()=>{reader.classList.remove('open');document.body.style.overflow=''},450)}
+document.getElementById('close').onclick=closeLetter;
+reader.addEventListener('click',e=>{if(e.target===reader)closeLetter()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&reader.classList.contains('open'))closeLetter();if(e.key==='ArrowRight'&&reader.classList.contains('open'))openLetter(current+1);if(e.key==='ArrowLeft'&&reader.classList.contains('open'))openLetter(current-1)});
+document.getElementById('prev').onclick=()=>openLetter(current-1);
+document.getElementById('next').onclick=()=>openLetter(current+1);
+document.getElementById('random').onclick=()=>{let n;do{n=Math.floor(Math.random()*letters.length)}while(n===current);openLetter(n);const t=document.getElementById('toast');t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),1600)};
+document.getElementById('start').onclick=()=>document.getElementById('letters').scrollIntoView({behavior:'smooth'});
+// Petalitos flotando en el fondo
+const petalLayer=document.getElementById('petals');
+for(let i=0;i<18;i++){const p=document.createElement('span');p.className='petal';p.textContent=['✿','❀','♡','✧'][i%4];p.style.left=(Math.random()*100)+'%';p.style.fontSize=(10+Math.random()*15)+'px';p.style.animationDuration=(12+Math.random()*16)+'s';p.style.animationDelay=(-Math.random()*25)+'s';p.style.setProperty('--drift',(Math.random()*150-75)+'px');petalLayer.appendChild(p)}
+</script>
+</body>
+</html>
